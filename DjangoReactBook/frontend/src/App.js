@@ -1,25 +1,52 @@
+
+/* backend/ rest / api imports */
+
+/* react imports */
+import {useState, useEffect } from 'react'
+
+/* styling imports */
 import logo from './logo.svg';
 import './App.css';
+import './index.js'
+
+
+/* usestate
+the usestate/initial state is books with an empty array
+useEffect is inserting books into the usestate
+printing them with .map
+*/
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
+    const [books, setBooks] = useState([])
+    useEffect (() => {
+            setBooks([
+                {
+                "name":"Otostopçunun Galaksi Rehberi", 
+                "author":    "Douglas Adams", 
+                "description": "Lorem ipsum"
+                },
+                {
+                "name":"Hikayeler", 
+                "author":    "Edgar Allan Poe", 
+                "description": "Lorem ipsum sit door amet"
+                }
+            ])
+    },[])
+/* =================== */
+/* RETURN */
+/* =================== */
+        return (
+            books.map((book,index) => {
+                return (
+                    <div className="book-item">
+                        <h2>{book.name}</h2>
+                        <p>{book.author}</p>
+                        <p>{book.description}</p>
+                    </div>
+                )}
+                )
+        );
+    }
 export default App;
