@@ -1,17 +1,24 @@
-<!-- 
-# send a http req and print the returned data to the screen. print all the books 
-on the homepage as a list
+
+
+
+<!--
+====================================
+area where book list is printed
+====================================
 -->
-
-
 {% extends 'base.html' %}
     {% block content %}
-    <h1>Homepage. view the full list of books</h1>
+
+    <h1>Homepage - the full list of books</h1>
     <a href="/books_list"></a>
-    <button><a href="/create_book">create a new book</a></button>
+    <button><a href="/create-book">create a new book</a></button>
 
     <div id="books"></div>
+
     <script>
+//====================================
+//fetch book data from books_list
+//====================================
         const booksElement = document.getElementById('books')
 
         booksElement.innerHTML = 'Just a moment'
@@ -40,4 +47,22 @@ on the homepage as a list
         }
     xhr.send()
     </script>
+
+<!--
+====================================
+book_create_view form sending to API
+====================================
+-->
+<h2>Create a new book</h2>
+<form method="POST" action="/create-book">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="hidden" value="/" name="next"/>
+    <input type="text" name="name" />
+    <input type="text" name="author" />
+    <textarea type="text" name="description"></textarea>
+    <button type="submit">Save</button>
+</form>
+
+
 {% endblock content %}

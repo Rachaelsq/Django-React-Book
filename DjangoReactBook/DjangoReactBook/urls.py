@@ -11,7 +11,9 @@ from django import forms
 from bookapp.views import home_view
 from bookapp.views import book_detail_view
 from bookapp.views import book_create_view
+from bookapp.views import book_create_view_serializer
 from bookapp.views import books_list
+
 #model imports
 from bookapp.models import Books
 
@@ -20,6 +22,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view),
     path('bookapp/<int:book_id>', book_detail_view),
-    path('create_book', book_create_view),
+
+    path('create-book', book_create_view_serializer),
     path('books_list', books_list),
 ]
+
+""" path('create-book', book_create_view), """
