@@ -1,4 +1,3 @@
-
 /* backend/ rest / api imports */
 
 /* react imports */
@@ -9,6 +8,8 @@ import logo from './logo.svg';
 import './App.css';
 import './index.js'
 
+/* pages */
+
 
 /* usestate
 the usestate/initial state is books with an empty array
@@ -17,9 +18,19 @@ printing them with .map
 */
 
 
-
 function App() {
     const [books, setBooks] = useState([])
+/* fetch the books */
+useEffect (() => {
+    async function fetchBooks() {
+        const res = await fetch("http://127.0.0.1:8000/bookslist/");
+        res.json()
+        .then(res => setBooks(res.response))
+        .catch(err => setErrors(err));
+    }
+    fetchBooks();
+},[])
+/* display the books */ 
     useEffect (() => {
             setBooks([
                 {
